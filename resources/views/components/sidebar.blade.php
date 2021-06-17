@@ -27,7 +27,7 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="/list-product" class="nav-link">
+                <a href="{{url("/list-product")}}" class="nav-link">
                     <i class="nav-icon fas fa-list-ul"></i>
                     <p>
                         List Product
@@ -36,10 +36,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/list-category" class="nav-link">
+                <a href="{{url("/list-category")}}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         List Category
+                        <span class="right badge badge-danger">New</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{url("/list-brand")}}" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        List Brand
                         <span class="right badge badge-danger">New</span>
                     </p>
                 </a>

@@ -2,35 +2,13 @@
 
 namespace App\Models;
 
-include_once "../database/databasepc.php";
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Model;
-
-class Category implements Model {
-    public function allList()
-    {
-        $sql_txt = "select * from categories";
-        return queryDB($sql_txt);
-    }
-
-    public function save(array $data, $id)
-    {
-        // TODO: Implement save() method.
-    }
-
-    public function add(array $data)
-    {
-        // TODO: Implement add() method.
-    }
-
-    public function edit(array $data)
-    {
-        // TODO: Implement edit() method.
-    }
-
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
-    }
-
+class Category extends Model {
+    use HasFactory;
+    protected $table = "categories";
+    //protected $primaryKey = "id"; nếu là id thì ko cần khai báo
+    protected $fillable = ["name"];
+    // public $timestamps = true; mặc định là true , nghĩa là tự động cập nhật giá trị cho 2 cột created_at và updated_at
 }

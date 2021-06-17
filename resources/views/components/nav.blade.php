@@ -8,10 +8,13 @@
             <a href="/" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/list-product" class="nav-link">List Product</a>
+            <a href="{{url("/list-product")}}" class="nav-link">List Product</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/list-category" class="nav-link">List Category</a>
+            <a href="{{url("/list-category")}}" class="nav-link">List Category</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{url("/list-brand")}}" class="nav-link">List Brand</a>
         </li>
     </ul>
 
