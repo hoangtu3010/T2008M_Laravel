@@ -6,7 +6,7 @@ function connectDB()
     $servername = "localhost";
     $username = "root";
     $passworld = "";
-    $db = "product_php";
+    $db = "t2008m_laravel";
     // create connection
     $conn = new mysqli($servername, $username, $passworld, $db);
 

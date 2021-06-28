@@ -5,7 +5,7 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
     </div>
 
@@ -27,7 +27,7 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{url("/list-product")}}" class="nav-link">
+                <a href="{{url("/admin/list-product")}}" class="nav-link">
                     <i class="nav-icon fas fa-list-ul"></i>
                     <p>
                         List Product
@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{url("/list-category")}}" class="nav-link">
+                <a href="{{url("/admin/list-category")}}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         List Category
@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{url("/list-brand")}}" class="nav-link">
+                <a href="{{url("/admin/list-brand")}}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         List Brand

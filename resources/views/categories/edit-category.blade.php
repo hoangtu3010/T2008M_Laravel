@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{url("/list-category")}}">List Category</a></li>
+                            <li class="breadcrumb-item"><a href="{{url("/admin/list-category")}}">List Category</a></li>
                             <li class="breadcrumb-item active">Edit Category</li>
                         </ol>
                     </div>
@@ -24,7 +24,7 @@
                         <h3 class="card-title">Edit</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{url("/list-category/update-category", ["id"=>$item->id])}}" method="post" class="needs-validation" novalidate>
+                        <form action="{{url("/admin/list-category/update-category", ["id"=>$item->id])}}" method="post" class="needs-validation" novalidate>
                             @csrf
                             <div class="form-group" style="margin-bottom: 30px">
                                 <label for="validationCustom01" class="form-label">Tên Category</label>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <a href="{{url("/list-category")}}"><button class="btn btn-secondary" type="button">Back</button></a>
+                                <a href="{{url("/admin/list-category")}}"><button class="btn btn-secondary" type="button">Back</button></a>
                                 <button class="btn btn-outline-success" type="submit" style="float: right">Lưu</button>
                             </div>
                         </form>

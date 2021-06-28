@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{url("/list-product")}}">List Product</a></li>
+                            <li class="breadcrumb-item"><a href="{{url("/admin/list-product")}}">List Product</a></li>
                             <li class="breadcrumb-item active">Edit Product</li>
                         </ol>
                     </div>
@@ -24,7 +24,7 @@
                         <h3 class="card-title">Edit</h3>
                     </div>
                     <div class="card-body">
-                        <form class="row needs-validation" action="{{url("/list-product/update-product", ["id"=>$item->id])}}" method="post" novalidate>
+                        <form class="row needs-validation" action="{{url("/admin/list-product/update-product", ["id"=>$item->id])}}" method="post" novalidate>
                             @csrf
                             <div class="col-md-4">
                                 <label class="form-label">Image</label>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-md-4" style="margin-top: 20px">
                                 <label for="validationCustom04" class="form-label">Brand</label>
-                                <select name="brands_id" class="form-control" id="validationCustom04" required>
+                                <select name="brand_id" class="form-control" id="validationCustom04" required>
                                     @foreach($brands as $br)
                                         <option @if($br->__get("id") == $item->Brand->__get("id")) selected @endif value="{{$br->__get("id")}}" >{{$br->name}}</option>
                                     @endforeach
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-md-4" style="margin-top: 20px">
                                 <label for="validationCustom05" class="form-label">Category</label>
-                                <select name="categories_id" class="form-control" id="validationCustom05" required>
+                                <select name="category_id" class="form-control" id="validationCustom05" required>
                                     @foreach($categories as $ct)
                                         <option @if($ct->__get("id")==$item->Category->__get("id")) selected @endif value="{{$ct->__get("id")}}">{{$ct->name}}</option>
                                     @endforeach
@@ -85,7 +85,7 @@
                                 <textarea name="description" rows="7" class="form-control" id="validationCustom05">{{$item->description}}</textarea>
                             </div>
                             <div class="col-12" style="margin-top: 20px">
-                                <a href="{{url("/list-product")}}"><button class="btn btn-secondary" type="button">Back</button></a>
+                                <a href="{{url("/admin/list-product")}}"><button class="btn btn-secondary" type="button">Back</button></a>
                                 <button class="btn btn-outline-success" type="submit" style="float: right">Lưu</button>
                             </div>
                         </form>

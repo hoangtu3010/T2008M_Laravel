@@ -11,4 +11,8 @@ class Category extends Model {
     //protected $primaryKey = "id"; nếu là id thì ko cần khai báo
     protected $fillable = ["name"];
     // public $timestamps = true; mặc định là true , nghĩa là tự động cập nhật giá trị cho 2 cột created_at và updated_at
+
+    public function Product(){
+        return $this->hasMany(Product::class); // trả về 1 collection các object Product
+    }
 }

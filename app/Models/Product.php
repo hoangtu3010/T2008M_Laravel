@@ -13,17 +13,24 @@
             "description",
             "price",
             "qty",
-            "brands_id",
-            "categories_id"
+            "brand_id",
+            "category_id"
         ];
 
         public function Category()
         {
-            return $this->belongsTo(Category::class, "categories_id");
+            return $this->belongsTo(Category::class, "category_id");
         }
 
         public function Brand(){
-            return $this->belongsTo(Brand::class, "brands_id", "id");
+            return $this->belongsTo(Brand::class, "brand_id", "id");
+        }
+
+        public function getImage(){
+            if ($this->image){
+                return asset("upload/".$this->image);
+            }
+            return asset("upload/default.png");
         }
 
     }

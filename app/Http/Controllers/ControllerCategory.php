@@ -8,8 +8,20 @@ use Illuminate\Http\Request;
 class ControllerCategory extends Controller {
     public function listCategory(){
 //        $categories = DB::table("categories")->get(); // tra ve 1 list object StdClass
-        $categories = Category::all(); // trả về 1 array các object Category
-//        dd($categories);
+//        $categories = Category::all(); // trả về 1 array các object Category
+//        $categories = Category::with("Product")
+//        $categories = Category::withCount("Product")
+//            ->where("category_id", "=", 1)
+//            ->whereDate("created_at", "2021-06-18")
+//            ->whereMonth("created_at", "6")
+//            ->whereMonth("price", ">", 500)
+//            ->where("name", "LIKE", "%Rolex%")
+//            ->oderBy("price", "asc")
+//            ->limit(1) // số lượng lấy
+//            ->skip(1) // số lượng bỏ qua
+
+        //Phân trang
+        $categories = Category::with("Product")->paginate(10);
         return view("categories.list-category", [
             'categories' => $categories
         ]);
@@ -30,7 +42,7 @@ class ControllerCategory extends Controller {
         Category::create([
            "name"=>$n
         ]);
-        return redirect()->to("list-category");
+        return redirect()->to("/admin/list-category");
     }
 
     public function editCategory($id){
@@ -53,7 +65,7 @@ class ControllerCategory extends Controller {
         $item->update([
            "name" => $request->get("name")
         ]);
-        return redirect()->to("list-category");
+        return redirect()->to("/admin/list-category");
     }
 
     public function deleteCategory($id){
@@ -62,6 +74,6 @@ class ControllerCategory extends Controller {
 //        DB::table("categories")->where("id", $id)->delete();
         $item = Category::findOrFail($id);
         $item->delete([$item]);
-        return redirect()->to("list-category");
+        return redirect()->to("/admin/list-category");
     }
 }

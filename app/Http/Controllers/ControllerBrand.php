@@ -9,7 +9,8 @@ class ControllerBrand extends Controller
 {
     public function listBrand(){
 //        $brands = DB::table("brands")->get();
-        $brands = Brand::all();
+//        $brands = Brand::all();
+        $brands = Brand::with("Product")->get();
         return view("brands.list-brand", [
             "brands"=>$brands
         ]);
@@ -31,7 +32,7 @@ class ControllerBrand extends Controller
         Brand::create([
            "name"=>$n
         ]);
-        return redirect()->to("list-brand");
+        return redirect()->to("/admin/list-brand");
     }
 
     public function editBrand($id){
@@ -54,7 +55,7 @@ class ControllerBrand extends Controller
         $item->update([
             "name"=>$request->get("name")
         ]);
-        return redirect()->to("list-brand");
+        return redirect()->to("/admin/list-brand");
     }
 
     public function deleteBrand($id){
@@ -63,7 +64,7 @@ class ControllerBrand extends Controller
 //        DB::table("brands")->where("id", $id)->delete();
         $item = Brand::findOrFail($id);
         $item->delete();
-        return redirect()->to("list-brand");
+        return redirect()->to("/admin/list-brand");
     }
 
 

@@ -12,6 +12,7 @@ class ControllerProduct extends Controller
         return view('home');
     }
 
+
     public function listProduct(){
 //        $products = DB::table("products")->get();
 //        dd($products);
@@ -19,11 +20,11 @@ class ControllerProduct extends Controller
 //        $products = Product::all();
 
         // Nối bảng để lấy tên category
-//        $products = Product::leftJoin("categories", "categories_id", "=","products.categories_id")->select("products.*","categories.name as categories_name")->get();
+//        $products = Product::leftJoin("categories", "categories_id", "=","products.category_id")->select("products.*","category.name as category_name")->get();
 
 
         // dùng relationship
-        $products = Product::with("Category", "Brand")->get();
+        $products = Product::with("Category", "Brand")->simplePaginate(20);
         return view("products.list-product", [
             "products"=>$products
         ]);
@@ -44,7 +45,7 @@ class ControllerProduct extends Controller
 //        $p = $request->get("price");
 //        $q = $request->get("qty");
 //        $d = $request->get("description");
-//        $c = $request->get("categories_id");
+//        $c = $request->get("category_id");
 //        $now = Carbon::now();
 //        DB::table("products")->insert([
 //           "image"=>$i,
@@ -52,24 +53,42 @@ class ControllerProduct extends Controller
 //           "price"=>$p,
 //           "qty"=>$q,
 //           "description"=>$d,
-//           "categories_id"=>$c,
+//           "category_id"=>$c,
 //           "created_at"=>$now,
 //           "updated_at"=>$now
 //        ]);
+        $image = null;
+        if ($request->has("image")){
+            $file = $request->file("image");
+//            $fileName = $file->getClientOriginalName(); // lấy tên file
+            $exName = $file->getClientOriginalExtension(); // lấy đuôi file (vd: png, jpg, ...)
+            $fileName = time().".".$exName;
+            $fileSize = $file->getSize(); // lấy kích thước file
+            $allow = ["png", "jpg", "jpeg", "gif"]; // chỉ cho phép những file này up lên
+            if (in_array($exName, $allow)){ // nếu đuôi file trong danh sách cho phép
+                if ($fileSize < 10000000){ // kích thước nhỏ hơn 10MB
+                    try {
+                        $file->move("upload", $fileName); // up file lên host
+                        $image = $fileName;
+                    }catch (\Exception $e){}
+                }
+            }
+        }
+
         try {
             Product::create([
-                "image"=>$request->get("image"),
+                "image"=>$image,
                 "name"=>$request->get("name"),
                 "price"=>$request->get("price"),
                 "qty"=>$request->get("qty"),
                 "description"=>$request->get("description"),
-                "brands_id"=>$request->get("brands_id"),
-                "categories_id"=>$request->get("categories_id")
+                "brand_id"=>$request->get("brand_id"),
+                "category_id"=>$request->get("category_id")
             ]);
         }catch (\Exception $e){
             abort(404);
         }
-        return redirect()->to("list-product");
+        return redirect()->to("/admin/list-product");
     }
 
     public function editProduct($id){
@@ -95,7 +114,7 @@ class ControllerProduct extends Controller
 //            "price"=>$request->get("price"),
 //            "qty"=>$request->get("qty"),
 //            "description"=>$request->get("description"),
-//            "categories_id"=>$request->get("categories_id"),
+//            "category_id"=>$request->get("category_id"),
 //            "updated_at"=>Carbon::now()
 //        ]);
         $item = Product::findOrFail($id);
@@ -105,10 +124,10 @@ class ControllerProduct extends Controller
             "price"=>$request->get("price"),
             "qty"=>$request->get("qty"),
             "description"=>$request->get("description"),
-            "brands_id"=>$request->get("brands_id"),
-            "categories_id"=>$request->get("categories_id"),
+            "brand_id"=>$request->get("brand_id"),
+            "category_id"=>$request->get("category_id"),
         ]);
-        return redirect()->to("list-product");
+        return redirect()->to("/admin/list-product");
 
     }
 
@@ -118,7 +137,7 @@ class ControllerProduct extends Controller
 //        DB::table("products")->where("id", $id)->delete();
         $item = Product::findOrFail($id);
         $item->delete($item);
-        return redirect()->to("list-product");
+        return redirect()->to("/admin/list-product");
     }
 
 

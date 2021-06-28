@@ -21,13 +21,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h1 class="card-title">Brands</h1>
-                        <a href="{{url("/list-brand/add-brand")}}"><button class="btn btn-outline-info" style="float: right">Thêm mới</button></a>
+                        <a href="{{url("/admin/list-brand/add-brand")}}"><button class="btn btn-outline-info" style="float: right">Thêm mới</button></a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-striped table-hover">
                             <thead>
                             <th>Id</th>
                             <th width="40%">Name</th>
+                            <th>Tổng số lượng sản phẩm</th>
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th width="10%" colspan="2"></th>
@@ -37,6 +38,7 @@
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->name}}</td>
+                                    <td class="text-center">{{count($item->Product)}}</td>
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
                                     <td class="text-center">
@@ -44,10 +46,10 @@
                                         {{--                            <input type="hidden" name="id" value="<?php echo $item["id"] ?>"/>--}}
                                         {{--                            <button type="submit" style="border: none; background-color: unset"><i class="bi bi-pencil-square"></i></button>--}}
                                         {{--                        </form>--}}
-                                        <a href="{{url("/list-brand/edit-brand", ["id"=>$item->id])}}" style="color: #17a2b8"><i class="far fa-edit"></i></a>
+                                        <a href="{{url("/admin/list-brand/edit-brand", ["id"=>$item->id])}}" style="color: #17a2b8"><i class="far fa-edit"></i></a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{url("/list-brand/delete-brand", ["id"=>$item->id])}}" style="color: #dc3545"><i class="fas fa-trash"></i></a>
+                                        <a href="{{url("/admin/list-brand/delete-brand", ["id"=>$item->id])}}" style="color: #dc3545"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

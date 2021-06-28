@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{url("/list-product")}}">List Product</a></li>
+                            <li class="breadcrumb-item"><a href="{{url("/admin/list-product")}}">List Product</a></li>
                             <li class="breadcrumb-item active">Add Product</li>
                         </ol>
                     </div>
@@ -24,11 +24,11 @@
                         <h3 class="card-title">Add</h3>
                     </div>
                     <div class="card-body">
-                        <form class="row needs-validation" action="{{url("/list-product/save-product")}}" method="post" novalidate>
+                        <form class="row needs-validation" action="{{url("/admin/list-product/save-product")}}" method="post" enctype="multipart/form-data" novalidate>
                             @csrf
                             <div class="col-md-4">
                                 <label class="form-label">Image</label>
-                                <input name="image" type="text" class="form-control" value="" placeholder="Link URL" />
+                                <input name="image" type="file" class="form-control" value="" style="line-height: 1.1"/>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom01" class="form-label">Name</label>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-md-4" style="margin-top: 20px">
                                 <label for="validationCustom04" class="form-label">Brand</label>
-                                <select name="brands_id" class="form-control" id="validationCustom04" required>
+                                <select name="brand_id" class="form-control" id="validationCustom04" required>
                                     <option selected disabled value="">Choose Brand...</option>
                                     @foreach($brands as $item)
                                         <option @if(old("brands_id")==$item->__get("id")) selected @endif value="{{$item->__get("id")}}">{{$item->__get("name")}}</option>
@@ -65,10 +65,10 @@
                             </div>
                             <div class="col-md-4" style="margin-top: 20px">
                                 <label for="validationCustom05" class="form-label">Category</label>
-                                <select name="categories_id" class="form-control" id="validationCustom05" required>
+                                <select name="category_id" class="form-control" id="validationCustom05" required>
                                     <option selected disabled value="">Choose Category...</option>
                                     @foreach($categories as $item)
-                                        <option @if(old("categories_id")==$item->__get("id")) selected @endif value="{{$item->__get("id")}}">{{$item->__get("name")}}</option>
+                                        <option @if(old("category_id")==$item->__get("id")) selected @endif value="{{$item->__get("id")}}">{{$item->__get("name")}}</option>
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback">
@@ -80,7 +80,7 @@
                                 <textarea name="description" rows="7" class="form-control" id="validationCustom06"></textarea>
                             </div>
                             <div class="col-12" style="margin-top: 20px">
-                                <a href="{{url("/list-product")}}"><button class="btn btn-secondary" type="button">Back</button></a>
+                                <a href="{{url("/admin/list-product")}}"><button class="btn btn-secondary" type="button">Back</button></a>
                                 <button class="btn btn-outline-success" type="submit" style="float: right">Lưu</button>
                             </div>
                         </form>

@@ -5,16 +5,16 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/" class="nav-link">Home</a>
+            <a href="{{url("/admin")}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{url("/list-product")}}" class="nav-link">List Product</a>
+            <a href="{{url("/admin/list-product")}}" class="nav-link">List Product</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{url("/list-category")}}" class="nav-link">List Category</a>
+            <a href="{{url("/admin/list-category")}}" class="nav-link">List Category</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{url("/list-brand")}}" class="nav-link">List Brand</a>
+            <a href="{{url("/admin/list-brand")}}" class="nav-link">List Brand</a>
         </li>
     </ul>
 
