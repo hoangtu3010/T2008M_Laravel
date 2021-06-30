@@ -20,16 +20,12 @@ class DatabaseSeeder extends Seeder
 //            BrandSeeder::class
 //        ]);
         DB::table("admins")->insert([
-            "name"=>"Adminstractor",
-            "email"=>"admin@gmail.com",
-            "role"=>"ADMIN",
+            "name"=>"Moderato",
+            "email"=>"mod@gmail.com",
+            "role"=>"MOD",
             "password"=>bcrypt("12345678")
         ]);
 
-        DB::table("users")->insert([
-            "name"=>"User",
-            "email"=>"user@gmail.com",
-            "password"=>bcrypt("12345678")
-        ]);
+
     }
 }
