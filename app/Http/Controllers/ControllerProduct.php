@@ -3,13 +3,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use PHPUnit\Exception;
 
 class ControllerProduct extends Controller
 {
     public function home(){
         return view('home');
+    }
+
+    public function productList(){
+        $products = Product::with("Category")->get();
+        return response()->json([
+            "status"=>true,
+            "message"=>"Success",
+            "products"=>$products
+        ]);
     }
 
 
@@ -140,6 +153,33 @@ class ControllerProduct extends Controller
         return redirect()->to("/admin/list-product");
     }
 
+    public function addToCart($id){
+        $product = Product::findOrFail($id);
+        $cart = []; // mang trong gio hang
+        if (Session::has("cart")){
+            $cart = Session::get("cart");
+        }
 
+        if (!$this->checkCart($cart, $product)){ // sp chua co trong gio hang
+            $product->cart_qty = 1; // them 1 thuoc tinh ngoai le de bieu thi so luong trong gio hang
+            $cart[] = $product;
+        }else{
+            for ($i=0; $i<count($cart); $i++){
+                if ($cart[$i]->id == $product->id){
+                    $cart[$i]->cart_qty = $cart[$i]->cart_qty+1;
+                }
+            }
+        }
+        Session::put("cart",$cart);
+        return redirect()->to("cart");
+    }
 
+    private function checkCart($cart, $p){
+        foreach ($cart as $item){
+            if ($item->id == $p->id){
+                return true;
+            }
+        }
+        return false;
+    }
 }

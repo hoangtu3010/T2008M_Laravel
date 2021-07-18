@@ -39,8 +39,8 @@
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->name}}</td>
                                     <td class="text-center">{{count($item->Product)}}</td>
-                                    <td>{{$item->created_at}}</td>
-                                    <td>{{$item->updated_at}}</td>
+                                    <td>{{formatDate($item->created_at)}}</td>
+                                    <td>{{formatDate($item->updated_at)}}</td>
                                     <td class="text-center">
                                         {{--                        <form action="/edit-category" method="post">--}}
                                         {{--                            <input type="hidden" name="id" value="<?php echo $item["id"] ?>"/>--}}

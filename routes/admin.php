@@ -15,6 +15,7 @@ Route::middleware("auth:admin")->group(function (){
 
     Route::get('/list-product', [ControllerProduct::class, "listProduct"]);
     Route::get('/list-product/add-product', [ControllerProduct::class, "addProduct"]);
+    Route::get('/list-product/add-to-cart/{id}', [ControllerProduct::class, "addToCart"]);
     Route::post('/list-product/save-product', [ControllerProduct::class, "saveProduct"]);
     Route::get('/list-product/edit-product/{id}', [ControllerProduct::class, "editProduct"]);
     Route::post('/list-product/update-product/{id}', [ControllerProduct::class, "updateProduct"]);

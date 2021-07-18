@@ -48,12 +48,15 @@
                                     <td class="text-center">{{$item->qty}}</td>
                                     <td class="text-center">{{$item->Brand->__get("name")}}</td>
                                     <td class="text-center">{{$item->Category->__get("name")}}</td>
-                                    <td class="text-center">{{$item->updated_at}}</td>
+                                    <td class="text-center">{{formatDate($item->updated_at)}}</td>
                                     <td class="text-center">
                                         <a href="{{url("/admin/list-product/edit-product", ["id"=>$item->id])}}" style="color: #17a2b8"><i class="far fa-edit"></i></a>
                                     </td>
                                     <td class="text-center">
                                         <a href="{{url("/admin/list-product/delete-product", ["id"=>$item->id])}}" style="color: #dc3545"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{url("/admin/list-product/add-to-cart", ["id"=>$item->id])}}" style="color: #00a87d ;"><i class="fas fa-cart-plus"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

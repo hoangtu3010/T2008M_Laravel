@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function login(Request $request){
         if ($request->method() == "GET")
-            return view("auth.login");
+            return view("login & register.login");
         // Nếu chỉ là login user thông thường thì không cần làm việc này
 //        $credentias = $request->only(["email", "password"]);
 //        if (Auth::attempt($credentias)){ // login của bảng user

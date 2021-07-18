@@ -138,7 +138,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="?route=listcart" class="nav-link" role="button">
+            <a href="{{asset("/cart")}}" class="nav-link" role="button">
                     <i class="fas fa-shopping-cart"></i>
             </a>
         </li>

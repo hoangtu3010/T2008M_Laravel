@@ -16,9 +16,10 @@ class Admin extends Authenticatable
     protected $guarded = "admin"; // phản ánh xem khu vực hoạt động của mình
 
     protected $fillable = [
-      "name",
-      "email",
-      "password"
+        "name",
+        "email",
+        "password",
+        "role"
     ];
 
     protected $hidden = [ // Những column mà khi get data sẽ dấu đi
